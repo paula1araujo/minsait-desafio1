@@ -1,4 +1,3 @@
-# minsait-desafio1
 # Terraform Azure VM with WordPress
 
 Este repositório contém um script Terraform para criar uma máquina virtual no Azure, configurar Docker na VM e subir um container com WordPress.
@@ -7,6 +6,7 @@ Este repositório contém um script Terraform para criar uma máquina virtual no
 
 - Conta na Azure
 - [Terraform](https://www.terraform.io/downloads.html) instalado na sua máquina
+- Chave SSH gerada (public key)
 
 ## Passos para executar o código
 
