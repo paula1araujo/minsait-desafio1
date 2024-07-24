@@ -81,7 +81,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location            = azurerm_resource_group.rg.location
   size                = "Standard_B1s"
   admin_username      = "paula"
-  admin_password      = "P@ssword1234"
 
   network_interface_ids = [
     azurerm_network_interface.nic.id,
@@ -98,6 +97,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "18.04-LTS"
     version   = "latest"
   }
+
+  admin_ssh_key {
+    username   = "paula"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
+
+  disable_password_authentication = true
 
   custom_data = filebase64("cloud-init.txt")
 }
