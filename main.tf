@@ -75,4 +75,34 @@ resource "azurerm_network_interface_security_group_association" "nsg_association
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
-resource "azur
+resource "azurerm_linux_virtual_machine" "vm" {
+  name                = "paula-ara-vm"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  size                = "Standard_B1s"
+  admin_username      = "paula"
+  admin_password      = "P@ssword1234"
+
+  network_interface_ids = [
+    azurerm_network_interface.nic.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+
+  custom_data = filebase64("cloud-init.txt")
+}
+
+output "public_ip" {
+  value = azurerm_public_ip.public_ip.ip_address
+}
+
