@@ -100,7 +100,17 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_ssh_key {
     username   = "paula"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("+---[RSA 2048]----+
+|      =..        |
+|     * =         |
+|    + = .        |
+|   + = o         |
+|  * B o S        |
+| O = . + .       |
+|+ = o.o +        |
+| = o.=Eo o       |
+|  o.**XO+..      |
++----[SHA256]-----+")
   }
 
   disable_password_authentication = true
